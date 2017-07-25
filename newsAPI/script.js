@@ -17,20 +17,28 @@ $(document).ready(function() {
             $(".form-group").html(html)
         }//success
     })//ajax
-    var sourceSelected = $('#sourc option:selected').val();
+
+
     var newsApiKey = "d9c0cf6871d04a67bb3050ac1f2091eb"
-    var articleUrl = "https://newsapi.org/v1/articles?source=" + sourceSelected + "&sortBy=latest&apiKey=" + newsApiKey;
+    var articleUrl = "https://newsapi.org/v1/articles"
 
     $('#sub').click(function(event){
       event.preventDefault();
       console.log("The button was clicked.");
+      var sourceSelected = $('#sourc option:selected').val();
       $.ajax({
           url: articleUrl,
+
+          data:{
+            source: sourceSelected,
+            apiKey: newsApiKey
+          },
           type: 'GET',
           success: function(res){
             console.log("Success: res: ", res);
             console.log("this is sourceSelected: ",sourceSelected);
           }//success function
+
       });//ajax
 
     });
